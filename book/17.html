@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Immune to the Contagion - The Easy Way to Stop Snapping Back</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Easy Way to Stop Snapping Back</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chapter-17-immune-to-the-contagion"><a class="header" href="#chapter-17-immune-to-the-contagion">Chapter 17: Immune to the Contagion</a></h1>
+<p>Someone snaps at you.</p>
+<p>Maybe it's your partner, whose voice suddenly sharpens over something small. Maybe it's a colleague, who fires a cutting remark across the table in a meeting. Maybe it's a stranger, a driver, a customer service voice on the other end of the phone. The words are sharp. The heat is real. And in the instant it lands, something fires in you too.</p>
+<p>Your pulse kicks. Your jaw tightens. The heat rises in your chest and neck. And right behind it, the Big Monster's voice arrives — the same voice you've been learning to see through all book, but now aimed at a different target.</p>
+<p><em>They just attacked you. They can't talk to you like that. You can't let that pass. Fire back. Now.</em></p>
+<p>The contagion. Their heat becomes your heat. Their snap demands your snap. The whole thing happens in seconds, and if you weren't paying attention, you'd be in the middle of it before you knew you'd caught anything.</p>
+<p>But you've been paying attention. You've spent this entire book learning to see the mechanism. And now you can see it running in someone else. That changes everything.</p>
+<p>Let me ask you a question.</p>
+<p>When you snapped at people — all those times, all those triggers, all those sharp words — were you delivering a careful, considered truth about them? Were you offering an accurate, measured assessment of who they were and what they deserved? Or were you discharging heat through a narrowed nervous system?</p>
+<p>You know the answer. You weren't delivering truth. You were running a script. The Little Monster fired, the Big Monster supplied the story, and the words came out — not because they were accurate, but because they were available. The person in front of you wasn't the real target. They were just the nearest surface for the heat to hit.</p>
+<p>So here's the question that changes everything: if that's what was happening when you snapped, what's happening when someone snaps at you?</p>
+<p>The answer is the same. The person snapping at you is not a fully present, fully choosing human being delivering a considered judgment about you. They are someone whose Little Monster has fired and whose Big Monster is running its script. The sharp words are not a verdict. They're a symptom. The other person is hijacked, exactly the way you used to be — and their words are not an accurate read of you. They're the discharge of a narrowed nervous system, aimed at whatever happened to be in front of the heat.</p>
+<p>Think about what that means.</p>
+<p>Their snap was never about you. It was about their heat. Their trigger. Their Big Monster's story. The sharp words landed on you, but they weren't aimed at you with any clarity. They were aimed at the nearest target. You just happened to be there.</p>
+<h2 id="what-their-snap-is-actually-for"><a class="header" href="#what-their-snap-is-actually-for">What Their Snap Is Actually For</a></h2>
+<p>Let's go a step further, because you now know exactly what their snap is doing.</p>
+<p>It's discharging self-generated tension through the Magic Trick.</p>
+<p>Their trigger fired. Their Big Monster interpreted it as an emergency — <em>I'm being disrespected, this is an attack, I must respond now</em> — and that interpretation created a wave of internal pressure. The snap was the release. The sharp words let the pressure out. They felt better for a few seconds. And then, just like it always did for you, the regret arrived later — or didn't, because their story kept justifying it.</p>
+<p>And you don't need to defend against it. Not because it's not unpleasant. Not because the words don't sting. But because defending against it would be like defending against a wave. The wave isn't attacking you. It's just moving. The snap isn't a considered attack. It's a symptom.</p>
+<h2 id="the-immunity"><a class="header" href="#the-immunity">The Immunity</a></h2>
+<p>So here's what becomes possible when you see the other person's snap clearly.</p>
+<p>The bait is still there. The sharp words still land. Your Little Monster may still fire — that's the body's ancient wiring, and it doesn't unlearn its patterns just because you understand what's happening. The pulse may still kick. The heat may still rise.</p>
+<p>But the Big Monster's pitch — <em>fire back now, they attacked you, you can't let this pass</em> — has no authority anymore. Not because you're suppressing it. Not because you're clamping down or counting to ten or biting your tongue. Because the story that used to make the counter-strike feel necessary has already been dismantled.</p>
+<p>You don't catch their heat because there's nothing left in you that believes their heat is an attack that demands your participation. Their Little Monster fires. Their Big Monster runs its script. And you watch it, the way you'd watch a storm from behind a window. The wind is real. The noise is real. But it doesn't have to come inside.</p>
+<p>That's the immunity. Not suppression. Not willpower. Just the quiet clarity that comes from seeing the mechanism — their mechanism — in real time, and recognizing it for what it is.</p>
+<h2 id="the-ultimate-strength"><a class="header" href="#the-ultimate-strength">The Ultimate Strength</a></h2>
+<p>And here's the final piece.</p>
+<p>Not taking the bait is not passivity. It is not weakness. It is not accepting the attack, tolerating the disrespect, or letting the other person walk all over you.</p>
+<p>It's the strongest possible position.</p>
+<p>Think about what the other person is showing you when they snap. They're showing you their loss of control. They're showing you that their nervous system has been hijacked, that their Big Monster is running the show, that a trigger was enough to knock them off their footing. That's not strength. That's vulnerability, wearing a costume.</p>
+<p>Now think about what you're showing when you stay steady. You're showing something the other person can't touch — you're not rattled, you're not pulled into their storm. Their heat doesn't become your heat, their script doesn't become your script. You're standing outside the whole mechanism, watching it spin, and refusing to climb in.</p>
+<p>That's not weakness. That's immunity. And immunity is the opposite of weakness.</p>
+<p>The person who snaps is showing you their buttons. The person who stays steady is showing the other person something they can't push.</p>
+<p>You don't have to catch what they're throwing. And once you see that clearly, the last obstacle before the final step is gone.</p>
+<p>Their snap was never about you. It was their nervous system firing. And you don't have to catch what they're throwing.</p>
+<p>So you're immune to the contagion. But there's one more thing to see before the final step: nothing was ever actually at stake by waiting. That's the next chapter.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="16.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="18.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="16.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="18.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
